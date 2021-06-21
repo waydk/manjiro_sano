@@ -1,0 +1,40 @@
+version: "3.7"
+
+services:
+  datebase:
+    container_name: container_name
+    image: sameersbn/postgresql:12-20200524
+    environment:
+      DB_NAME: $DATABASE
+      PG_PASSWORD: $PG_PASSWORD
+      DB_USER: $PG_USER
+      DB_PASS: $PG_PASSWORD
+    restart: always
+    ports:
+    - 5432:5432
+    networks:
+      - botnet
+    volumes:
+    - ./pgdata:/var/lib/postgresql
+
+  tgbot:
+    container_name: container_name_tgbot
+    build:
+      context: .
+    command: python bot.py
+    networks:
+      - botnet
+    restart: always
+    env_file:
+      - ".env"
+    volumes:
+      - .:/app
+    depends_on:
+      - datebase
+
+
+
+
+networks:
+  botnet:
+    driver: bridge

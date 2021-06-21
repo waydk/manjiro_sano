@@ -1,6 +1,6 @@
 from asyncpg import UniqueViolationError
 
-from tgbot.utils.db_api.schemas.user import User
+from tg_bot.utils.db_api.schemas.user import User
 
 
 async def add_user(id_user: int, name: str):

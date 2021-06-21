@@ -1,6 +1,6 @@
 from sqlalchemy import Column, BigInteger, String, sql
 
-from tgbot.utils.db_api.db_gino import TimedBaseModel
+from tg_bot.utils.db_api.db_gino import TimedBaseModel
 
 
 class User(TimedBaseModel):

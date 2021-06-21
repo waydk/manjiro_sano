@@ -1,8 +1,8 @@
 from aiogram import Dispatcher
 from loguru import logger
 
-from tgbot import modules
-from tgbot.utils.db_api.db_gino import db, POSTGRES_URI
+from tg_bot import modules
+from tg_bot.utils.db_api.db_gino import db, POSTGRES_URI
 
 
 async def startup(dispatcher: Dispatcher):

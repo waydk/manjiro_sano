@@ -40,9 +40,14 @@ def parse_duration(duration):
     command_parse = re.compile(r"(!ro|/ro) ?(\d+)? ?([\w+\D]+)?")
     parsed = command_parse.match(duration.text)
     time = parsed.group(2)
-    comment = parsed.group(3)
+    reason = parsed.group(3)
+
     if not time:
         time = 5
     time = int(time)
+
+    if not reason:
+        reason = 'without reason'
+
     until_date = datetime.now() + timedelta(minutes=time)
-    return until_date, comment, time
+    return until_date, reason, time

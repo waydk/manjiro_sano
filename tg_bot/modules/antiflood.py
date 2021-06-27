@@ -33,7 +33,7 @@ async def command_ro(message: types.Message):
     await service_message.delete()
 
 
-async def command_un_ro(message):
+async def command_un_ro(message: types.Message):
     """
     A command that removes restrictions from the user
     """
@@ -48,3 +48,35 @@ async def command_un_ro(message):
     except aiogram.utils.exceptions.BadRequest as err:
         await message.answer(f"Error! - <code>{err.args}</code>")
         return
+
+
+async def command_ban(message: types.Message):
+    """
+    The command allows you to ban a user
+    """
+    try:
+        member = message.reply_to_message.from_user
+    except AttributeError:
+        await message.answer("<b>The message must be forwarded!</b>")
+        return
+    try:
+        await message.chat.kick(user_id=member.id)
+    except BadRequest:
+        await message.answer(f"User {member.id} - admin")
+
+    service_message = await message.answer("The message will be deleted after 5 seconds.")
+    await asyncio.sleep(5)
+    await message.reply_to_message.delete()
+    await message.delete()
+    await service_message.delete()
+
+
+async def command_un_ban(message: types.Message):
+    try:
+        member = message.reply_to_message.from_user
+    except AttributeError:
+        await message.answer("<b>The message must be forwarded!</b>")
+        return
+    await message.chat.unban(user_id=member.id)
+    await message.answer(f"{member.full_name} unbanned")
+

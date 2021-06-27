@@ -1,32 +1,32 @@
 import asyncio
-import datetime
-import re
 
 import aiogram
 from aiogram import types
 from aiogram.utils.exceptions import BadRequest
 
+from tg_bot.utils.admin_helpers import parse_duration, set_user_ro_permissions
 
-async def read_only_mode(message: types.Message):
-    member = message.reply_to_message.from_user
-    member_id = member.id
-    command_parse = re.compile(r"(!ro|/ro) ?(\d+)? ?([\w+\D]+)?")
-    parsed = command_parse.match(message.text)
-    time = parsed.group(2)
-    comment = parsed.group(3)
-    if not time:
-        time = 5
-    time = int(time)
-    until_date = datetime.datetime.now() + datetime.timedelta(minutes=time)
+
+async def command_ro(message: types.Message):
+    """
+    Command restricting the user
+    """
     try:
-        await message.chat.restrict(user_id=member_id, can_send_messages=False, until_date=until_date)
+        member = message.reply_to_message.from_user
+    except AttributeError:
+        await message.answer("Need reply")
+        return
+    until_date, comment, time = parse_duration(message)
+    try:
+        await message.chat.restrict(user_id=member.id, permissions=set_user_ro_permissions(),
+                                    until_date=until_date)
         await message.reply_to_message.delete()
     except aiogram.utils.exceptions.BadRequest as err:
-        await message.answer(f"Ошибка! {err.args}")
+        await message.answer(f"Error - {err.args}")
         return
-    await message.answer(f"Пользователю {message.reply_to_message.from_user.full_name} запрещено писать {time} минут.\n"
-                         f"По причине: \n<b>{comment}</b>")
-    service_message = await message.reply("Сообщение самоуничтожится через 5 секунд.")
+    await message.answer(f"User {message.reply_to_message.from_user.full_name} cant write {time} minute.\n"
+                         f"Because: \n<b>{comment}</b>")
+    service_message = await message.reply("5 secs")
     await asyncio.sleep(5)
 
     await message.delete()

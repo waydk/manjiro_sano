@@ -15,7 +15,7 @@ default_permissions = {'can_send_messages': True,
                        }
 
 
-def set_user_ro_permissions():
+def set_ro_permissions():
     """
     Assigns permissions
     """
@@ -30,6 +30,15 @@ def set_user_ro_permissions():
     )
     return types.ChatPermissions(
         **new_permissions
+    )
+
+
+def set_un_ro_permissions():
+    """
+    Assigns default permissions
+    """
+    return types.ChatPermissions(
+        **default_permissions
     )
 
 

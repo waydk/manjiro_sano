@@ -1,6 +1,6 @@
 from aiogram import Dispatcher
 
-from .admin import command_ro
+from .antiflood import command_ro
 from .errors import errors_handler
 from .start import start_command
 from ..utils.filters import AdminFilter

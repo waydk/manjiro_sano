@@ -20,9 +20,8 @@ async def command_ro(message: types.Message):
     try:
         await message.chat.restrict(user_id=member.id, permissions=set_ro_permissions(),
                                     until_date=until_date)
-        await message.reply_to_message.delete()
     except aiogram.utils.exceptions.BadRequest as err:
-        await message.answer(f"Error! - <code>{err.args}</code>")
+        await message.answer(f"<code>{err.args[0]}</code>")
         return
     await message.answer(f"User  <code>{member.full_name}</code>  received a mute on account of  <code>{reason}</code>"
                          f"  for  <code>{time}</code>  minutes")
@@ -44,9 +43,9 @@ async def command_un_ro(message: types.Message):
         return
     try:
         await message.chat.restrict(user_id=member.id, permissions=set_un_ro_permissions(), )
-        await message.answer(f"{member.full_name} was taken off the mute!")
+        await message.answer(f"<code>{member.full_name}</code> was taken off the mute!")
     except aiogram.utils.exceptions.BadRequest as err:
-        await message.answer(f"Error! - <code>{err.args}</code>")
+        await message.answer(f"<code>{err.args[0]}</code>")
         return
 
 
@@ -62,7 +61,9 @@ async def command_ban(message: types.Message):
     try:
         await message.chat.kick(user_id=member.id)
     except BadRequest:
-        await message.answer(f"User {member.id} - admin")
+        await message.answer(f"User <code>{member.full_name}</code> - admin")
+        return
+    await message.answer(f"User <code>{member.full_name}</code> banned!")
 
     service_message = await message.answer("The message will be deleted after 5 seconds.")
     await asyncio.sleep(5)
@@ -72,11 +73,13 @@ async def command_ban(message: types.Message):
 
 
 async def command_un_ban(message: types.Message):
+    """
+    The command allows you to unban a user
+    """
     try:
         member = message.reply_to_message.from_user
     except AttributeError:
         await message.answer("<b>The message must be forwarded!</b>")
         return
     await message.chat.unban(user_id=member.id)
-    await message.answer(f"{member.full_name} unbanned")
-
+    await message.answer(f"<code>{member.full_name}</code> unbanned")

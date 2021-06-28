@@ -6,6 +6,7 @@
 * <code>!un_ro /un_ro</code> - to allow writing again <b>(!un_ro)</b>
 * <code>!ban /ban</code> - Remove a user from the group <b>(!ban)</b>
 * <code>!un_ban /un_ban</code> - Ability to return to the group <b>(!un_ban)</b>
+* <code>/set_welcome</code> - Allows you to set the chat greeting <b>(/set_welcome some text)</b>
 ## Development
 ### System dependencies
 * Python 3.9

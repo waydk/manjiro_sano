@@ -27,6 +27,5 @@ async def command_set_welcome(message: types.Message):
         await message.answer('try: /set_welcome "some text"')
         return
     welcome_text = ' '.join(message.text.split(' ')[1:])
-    print(welcome_text)
     await db_helpers.add_welcome_message(id_group=message.chat.id, message=welcome_text)
     await message.answer(f"your welcome text is set - {welcome_text}")

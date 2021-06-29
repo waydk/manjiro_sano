@@ -9,6 +9,7 @@
 * <code>/set_welcome</code> - Allows you to set the chat greeting <b>(/set_welcome some text)</b>
 * <code>/set_farewell</code> -Allows you to set a goodbye for users <b>(/set_farewell some text)</b>
 * <code>/kick</code> - An entertaining command that allows you to hit another user <b>(/kick)</b>
+* <code>/anime</code> - Сommand to search for information about anime <b>(/anime title_anime)</b>
 ## Development
 ### System dependencies
 * Python 3.9
@@ -18,6 +19,7 @@
 * asyncpg 0.22.0
 * aiogram 2.13
 * loguru 0.5.3
+* requests 2.25.1
 ### Setup environment
 * Rename .env.dist to <b>.env</b>
 * Fill in your <b>data</b>

@@ -7,6 +7,8 @@
 * <code>!ban /ban</code> - Remove a user from the group <b>(!ban)</b>
 * <code>!un_ban /un_ban</code> - Ability to return to the group <b>(!un_ban)</b>
 * <code>/set_welcome</code> - Allows you to set the chat greeting <b>(/set_welcome some text)</b>
+* <code>/set_farewell</code> -Allows you to set a goodbye for users <b>(/set_farewell some text)</b>
+* <code>/kick</code> - An entertaining command that allows you to hit another user <b>(/kick)</b>
 ## Development
 ### System dependencies
 * Python 3.9

@@ -1,6 +1,7 @@
 from aiogram import Dispatcher
 from aiogram import types
 
+from .anime import anime_info
 from .antiflood import command_ro, command_un_ro, command_ban, command_un_ban
 from .errors import errors_handler
 from .farewell import farewell_left_member, command_set_farewell
@@ -22,3 +23,4 @@ def setup(dp: Dispatcher):
     dp.register_message_handler(farewell_left_member, content_types=types.ContentType.LEFT_CHAT_MEMBER)
     dp.register_message_handler(command_set_farewell, AdminFilter(), commands="set_farewell")
     dp.register_message_handler(command_kick, commands="kick")
+    dp.register_message_handler(anime_info, commands="anime")

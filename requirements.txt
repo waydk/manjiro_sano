@@ -4,3 +4,4 @@ gino~=1.0.1
 asyncpg~=0.22.0
 aiogram~=2.13
 loguru~=0.5.3
+requests~=2.25.1

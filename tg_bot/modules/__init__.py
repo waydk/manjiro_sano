@@ -3,6 +3,7 @@ from aiogram import types
 
 from .antiflood import command_ro, command_un_ro, command_ban, command_un_ban
 from .errors import errors_handler
+from .farewell import farewell_left_member, command_set_farewell
 from .start import start_command
 from .welcome import welcome_new_member, command_set_welcome
 from ..utils.filters import AdminFilter
@@ -17,3 +18,5 @@ def setup(dp: Dispatcher):
     dp.register_message_handler(command_un_ban, AdminFilter(), commands="un_ban", commands_prefix='!/')
     dp.register_message_handler(welcome_new_member, content_types=types.ContentType.NEW_CHAT_MEMBERS)
     dp.register_message_handler(command_set_welcome, AdminFilter(), commands="set_welcome")
+    dp.register_message_handler(farewell_left_member, content_types=types.ContentType.LEFT_CHAT_MEMBER)
+    dp.register_message_handler(command_set_farewell, AdminFilter(), commands="set_farewell")

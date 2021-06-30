@@ -2,13 +2,14 @@
 # Anime telegram bot for group management
 *Telegram bot written in python using aiogram as the framework, postgresql as the database*
 ## Available commands:
-* <code>!ro /ro <time> <reason></code> - prohibit a user from writing for a certain period of time <b>(!ro 1 spam)</b>
-* <code>!un_ro /un_ro</code> - to allow writing again <b>(!un_ro)</b>
+* <code>!mute /mute <time> <reason></code> - prohibit a user from writing for a certain period of time <b>(!ro 1 spam)</b>
+* <code>!unmute /unmute</code> - to allow writing again <b>(!un_ro)</b>
 * <code>!ban /ban</code> - Remove a user from the group <b>(!ban)</b>
 * <code>!un_ban /un_ban</code> - Ability to return to the group <b>(!un_ban)</b>
 * <code>/set_welcome</code> - Allows you to set the chat greeting <b>(/set_welcome some text)</b>
 * <code>/set_farewell</code> -Allows you to set a goodbye for users <b>(/set_farewell some text)</b>
 * <code>/kick</code> - An entertaining command that allows you to hit another user <b>(/kick)</b>
+* <code>/anime</code> - Сommand to search for information about anime <b>(/anime title_anime)</b>
 ## Development
 ### System dependencies
 * Python 3.9
@@ -18,6 +19,7 @@
 * asyncpg 0.22.0
 * aiogram 2.13
 * loguru 0.5.3
+* requests 2.25.1
 ### Setup environment
 * Rename .env.dist to <b>.env</b>
 * Fill in your <b>data</b>

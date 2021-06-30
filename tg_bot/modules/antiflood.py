@@ -7,7 +7,7 @@ from aiogram.utils.exceptions import BadRequest
 from tg_bot.utils.admin_helpers import parse_duration, set_un_ro_permissions, set_ro_permissions
 
 
-async def command_ro(message: types.Message):
+async def command_mute(message: types.Message):
     """
     Command restricting the user
     """
@@ -32,7 +32,7 @@ async def command_ro(message: types.Message):
     await service_message.delete()
 
 
-async def command_un_ro(message: types.Message):
+async def command_un_mute(message: types.Message):
     """
     A command that removes restrictions from the user
     """

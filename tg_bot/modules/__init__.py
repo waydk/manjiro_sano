@@ -5,7 +5,7 @@ from .anime import anime_info
 from .antiflood import command_mute, command_un_mute, command_ban, command_un_ban
 from .errors import errors_handler
 from .farewell import farewell_left_member, command_set_farewell
-from .funny import command_kick
+from .funny import command_kick, command_say
 from .start import start_command
 from .welcome import welcome_new_member, command_set_welcome
 from ..utils.filters import AdminFilter
@@ -24,3 +24,4 @@ def setup(dp: Dispatcher):
     dp.register_message_handler(command_set_farewell, AdminFilter(), commands="set_farewell")
     dp.register_message_handler(command_kick, commands="kick")
     dp.register_message_handler(anime_info, commands="anime")
+    dp.register_message_handler(command_say, commands="say")

@@ -10,6 +10,7 @@
 * <code>/set_farewell</code> -Allows you to set a goodbye for users <b>(/set_farewell some text)</b>
 * <code>/kick</code> - An entertaining command that allows you to hit another user <b>(/kick)</b>
 * <code>/anime</code> - Сommand to search for information about anime <b>(/anime title_anime)</b>
+* <code>/say</code> - with this command you can make the bot say something <b>(/say text)</b>
 ## Development
 ### System dependencies
 * Python 3.9

@@ -12,8 +12,11 @@ async def start_command(message: Message):
     """
     user = message.from_user.full_name
     logger.info(f"{user} send /start")
-    await message.answer_photo("https://pbs.twimg.com/media/E036-gkXMAUhG3j?format=jpg&name=large",
-                               caption=f"Hi, <i>{user}</i>. I'm a Telegram bot for"
-                                       f" managing groups\n<code>(click the buttons below)</code> ",
-                               reply_markup=main_markup)
-    await db_helpers.add_user(id_user=message.from_user.id, name=user)
+    if message.chat.type == 'supergroup':
+        await message.answer("Hello, I'm Sano Manjiro")
+    else:
+        await message.answer_photo("https://pbs.twimg.com/media/E036-gkXMAUhG3j?format=jpg&name=large",
+                                   caption=f"Hi, <i>{user}</i>. I'm a Telegram bot for"
+                                           f" managing groups\n<code>(click the buttons below)</code> ",
+                                   reply_markup=main_markup)
+        await db_helpers.add_user(id_user=message.from_user.id, name=user)

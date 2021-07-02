@@ -25,10 +25,10 @@ async def command_say(message: types.Message):
     With this command you can make the bot write what you want with the gif
     """
     text = message.text.split(" ")[1:]
-    if not len(text):
-        text = "Toman belongs to me. As long as I’m standing in the background, no one can lose."
+    if len(text):
+        text = ' '.join(text)
     else:
-        text = ''.join(text)
+        text = "Toman belongs to me. As long as I’m standing in the background, no one can lose."
     await message.answer_animation("https://64.media.tumblr.com/676d0be64ec8f03cc6faadde2c08a56c/"
                                    "67181d33d6243f76-74/s400x600/d95b7e0f8fee31aec3c7062053ffdbe4856a67d7.gifv",
                                    caption=text)

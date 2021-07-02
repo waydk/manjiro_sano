@@ -46,7 +46,7 @@ def parse_duration(duration):
     """
     Splits the admin message into date, comment and time of the mute
     """
-    command_parse = re.compile(r"(!ro|/ro) ?(\d+)? ?([\w+\D]+)?")
+    command_parse = re.compile(r"(!mute|/mute) ?(\d+)? ?([\w+\D]+)?")
     parsed = command_parse.match(duration.text)
     time = parsed.group(2)
     reason = parsed.group(3)

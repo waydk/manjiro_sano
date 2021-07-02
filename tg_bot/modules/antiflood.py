@@ -7,15 +7,20 @@ from aiogram.utils.exceptions import BadRequest
 from tg_bot.utils.admin_helpers import parse_duration, set_un_ro_permissions, set_ro_permissions
 
 
-async def command_mute(message: types.Message):
-    """
-    Command restricting the user
-    """
+async def get_member(message):
     try:
         member = message.reply_to_message.from_user
     except AttributeError:
         await message.answer("<b>The message must be forwarded!</b>")
         return
+    return member
+
+
+async def command_mute(message: types.Message):
+    """
+    Command restricting the user
+    """
+    member = await get_member(message)
     until_date, reason, time = parse_duration(message)
     try:
         await message.chat.restrict(user_id=member.id, permissions=set_ro_permissions(),
@@ -36,11 +41,7 @@ async def command_un_mute(message: types.Message):
     """
     A command that removes restrictions from the user
     """
-    try:
-        member = message.reply_to_message.from_user
-    except AttributeError:
-        await message.answer("<b>The message must be forwarded!</b>")
-        return
+    member = await get_member(message)
     try:
         await message.chat.restrict(user_id=member.id, permissions=set_un_ro_permissions(), )
         await message.answer(f"<code>{member.full_name}</code> was taken off the mute!")
@@ -53,11 +54,7 @@ async def command_ban(message: types.Message):
     """
     The command allows you to ban a user
     """
-    try:
-        member = message.reply_to_message.from_user
-    except AttributeError:
-        await message.answer("<b>The message must be forwarded!</b>")
-        return
+    member = await get_member(message)
     try:
         await message.chat.kick(user_id=member.id)
     except BadRequest:
@@ -76,10 +73,6 @@ async def command_un_ban(message: types.Message):
     """
     The command allows you to unban a user
     """
-    try:
-        member = message.reply_to_message.from_user
-    except AttributeError:
-        await message.answer("<b>The message must be forwarded!</b>")
-        return
+    member = await get_member(message)
     await message.chat.unban(user_id=member.id)
     await message.answer(f"<code>{member.full_name}</code> unbanned")

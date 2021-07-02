@@ -7,7 +7,7 @@ from .errors import errors_handler
 from .farewell import farewell_left_member, command_set_farewell
 from .funny import command_kick, command_say
 from .help import command_help, show_info_anime, back_to_help, show_anti_flood_info, show_funny_info, show_help, \
-    show_service_info
+    show_service_info, back_to_start
 from .start import start_command
 from .welcome import welcome_new_member, command_set_welcome
 from ..utils.filters import AdminFilter
@@ -35,3 +35,4 @@ def setup(dp: Dispatcher):
     dp.register_callback_query_handler(show_funny_info, help_callback.filter(name="fan_info"))
     dp.register_callback_query_handler(show_help, help_callback.filter(name="show_info"))
     dp.register_callback_query_handler(show_service_info, help_callback.filter(name="service"))
+    dp.register_callback_query_handler(back_to_start, help_callback.filter(name='back_start'))

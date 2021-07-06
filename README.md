@@ -29,3 +29,4 @@
 * <code>PG_HOST</code> is responsible for where your database is located
 * <code>PG_USER and PG_PASSWORD</code> are needed to access the database
 * <code>DATABASE</code> database name
+* <code>GIF_API_KEY</code> - you can get it [HERE](https://tenor.com/developer/keyregistration)

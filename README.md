@@ -11,6 +11,7 @@
 * <code>/kick</code> - An entertaining command that allows you to hit another user <b>(/kick)</b>
 * <code>/anime</code> - Сommand to search for information about anime <b>(/anime title_anime)</b>
 * <code>/say</code> - with this command you can make the bot say something <b>(/say text)</b>
+* <code>/gif</code> - you can find a gif with the given text <b>(/gif text)</b>
 ## Development
 ### System dependencies
 * Python 3.9

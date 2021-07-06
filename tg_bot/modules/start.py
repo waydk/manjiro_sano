@@ -12,11 +12,12 @@ async def start_command(message: Message):
     """
     user = message.from_user.full_name
     logger.info(f"{user} send /start")
-    if message.chat.type == 'supergroup':
-        await message.answer("Hello, I'm Sano Manjiro")
-    else:
+    if message.chat.type == 'private':
         await message.answer_photo("https://pbs.twimg.com/media/E036-gkXMAUhG3j?format=jpg&name=large",
-                                   caption=f"Hi, <i>{user}</i>. I'm a Telegram bot for"
-                                           f" managing groups\n<code>(click the buttons below)</code> ",
+                                   caption=f"Hi, {user}. I'm a Telegram bot to manage chats\n"
+                                           f"For all questions: @waydk\n"
+                                           f"<code>Click the buttons below</code> ",
                                    reply_markup=main_markup)
         await db_helpers.add_user(id_user=message.from_user.id, name=user)
+    else:
+        await message.answer("Hey, I'm Mikey.")

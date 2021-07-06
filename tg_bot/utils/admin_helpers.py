@@ -56,7 +56,7 @@ def parse_duration(duration):
     time = int(time)
 
     if not reason:
-        reason = 'without reason'
+        reason = 'for no reason'
 
     until_date = datetime.now() + timedelta(minutes=time)
     return until_date, reason, time
